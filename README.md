@@ -86,7 +86,7 @@ If you'd like to contribute to the development of this Restaurant Management Sys
 5. Create a pull request to the main repository, explaining your changes.
 
 ## License
-This Restaurant Management System is licensed under the MIT License. See the LICENSE file for more details.
+This Restaurant Management System is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
 For any questions or inquiries, please contact us at patel.bhaskar09@gmail.com
