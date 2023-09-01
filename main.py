@@ -5,8 +5,8 @@ from datetime import datetime
 from tabulate import tabulate
 
 
-with open('res_menu.json') as f:
-    data = json.load(f)
+with open("res_menu.json", encoding = 'utf-8') as f1:
+    data = json.load(f1)
     menu = json.dumps(data, indent=4)
 
 def check_weekend():
@@ -31,10 +31,11 @@ def add_menu_item(menu_data):
 
     menu_data["menu"].append(new_item)
 
-    with open('res_menu.json', 'w') as f:
-        json.dump(menu_data, f, indent=4)
-    with open('res_menu.json') as f:
-        data = json.load(f)
+    with open('res_menu.json', 'w', encoding = 'utf-8') as f2:
+        json.dump(menu_data, f2, indent=4)
+    with open('res_menu.json', encoding = 'utf-8') as f2:
+        json.load(f2)
+
 
 def print_categorized_menu(menu_data):
     categorized_menu = {"veg": [], "non-veg": [], "sweets": [], "drinks": []}
@@ -54,27 +55,12 @@ def print_categorized_menu(menu_data):
     print(table)
 
 
-def get_input(prompt, given_type, range = []):
-    while True:
-        value = input(prompt)
-        if type(value) == given_type:
-            pass
-        elif given_type == int:
-            try:
-                value = int(value)
-            except ValueError:
-                print("Invalid Response, please re-enter value.")
-                continue
-        if (range == []) or (range != [] and value in range):
-            return value
-        else:
-            print("Invalid Response, please re-enter value.")
-            continue
+
+def main():
+    print_categorized_menu(data)
+    add_menu_item(data)
+    print_categorized_menu(data)
 
 
-#get_input("y: ", int, range(40))
-# Call the function to print the categorized menu
-#print_categorized_menu(data)
-
-#add_menu_item(data)
-#print(check_weekend())
+if __name__ == "__main__":
+    main()
