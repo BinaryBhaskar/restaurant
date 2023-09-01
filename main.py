@@ -52,8 +52,27 @@ def print_categorized_menu(menu_data):
     print(table)
 
 
+def get_input(prompt, given_type, range = []):
+    while True:
+        value = input(prompt)
+        if type(value) == given_type:
+            pass
+        elif given_type == int:
+            try:
+                value = int(value)
+                pass
+            except ValueError:
+                print("Invalid Response, please re-enter value.")
+                continue
+        if (range = []) or (range != [] and num in range):
+                return value
+            else:
+                print("Invalid Response, please re-enter value.")
+                continue
+
+get_input("y: ", str, ["y","n"])
 # Call the function to print the categorized menu
-print_categorized_menu(data)
+#print_categorized_menu(data)
 
 #add_menu_item(data)
 #print(check_weekend())
