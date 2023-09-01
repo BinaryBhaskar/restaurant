@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 from tabulate import tabulate
-
+from res_library import get_input as ginput
 
 with open("res_menu.json", encoding = 'utf-8') as f1:
     data = json.load(f1)
@@ -19,7 +19,7 @@ def check_weekend():
 def add_menu_item(menu_data):
     name = input("Enter the name of the new menu item: ")
     price = float(input("Enter the price of the new menu item: "))
-    category = input("Enter the category of the new menu item (veg/non-veg/sweets/drinks): ")
+    category = ginput("Enter the category of the new menu item (veg/non-veg/sweets/drinks): ",str,["veg", "non-veg", "sweets", "drinks"], True)
     special = input("Is this a special item for weekends? (y/n): ").lower() == 'y'
 
     new_item = {
@@ -42,7 +42,7 @@ def print_categorized_menu(menu_data):
 
     for item in menu_data["menu"]:
         category = item["category"]
-        if "special" in item and item["special"] == True:
+        if item["special"] == True:
             if check_weekend():
                 categorized_menu[category].append([item["name"], item["price"]])
         else:
@@ -60,9 +60,10 @@ def print_categorized_menu(menu_data):
 
 
 def main():
+    print(check_weekend())
     print_categorized_menu(data)
-    add_menu_item(data)
-    print_categorized_menu(data)
+    #add_menu_item(data)
+    #print_categorized_menu(data)
 
 
 if __name__ == "__main__":
