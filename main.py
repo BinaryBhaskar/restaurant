@@ -72,7 +72,7 @@ def get_input(prompt, given_type, range = []):
 
 #get_input("y: ", int, range(40))
 # Call the function to print the categorized menu
-print_categorized_menu(data)
+#print_categorized_menu(data)
 
 #add_menu_item(data)
 #print(check_weekend())
