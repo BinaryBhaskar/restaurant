@@ -1,6 +1,7 @@
-# ResManSys - A better way to manage your restaurant.
+# ByteBite
+#### Manage, Serve, Thrive
 
-Welcome to the **ResManSys** *(Restaurant Management System)* , a Python program that allows you to efficiently manage various aspects of your restaurant, including ordering food, showing the menu, making table reservations, employee management, accessing restaurant information, and tracking orders and tables.
+Welcome to the **ByteBite**, a restaurant management python program that allows you to efficiently manage various aspects of your restaurant, including ordering food, showing the menu, making table reservations, employee management, accessing restaurant information, and tracking orders and tables.
 
 
 
@@ -70,5 +71,26 @@ python main.py
 ```
 
 
+
 ## Usage
-Follow the on-screen prompts to navigate through the system's features.Use the user-friendly interface to manage orders, reservations, employees, restaurant information, and order tracking.ContributingIf you'd like to contribute to the development of this Restaurant Management System, please follow these steps:Fork the repository.Create a new branch for your feature or bug fix.Make your changes and commit them with descriptive messages.Push your branch to your forked repository.Create a pull request to the main repository, explaining your changes.LicenseThis Restaurant Management System is licensed under the MIT License. See the LICENSE file for more details.ContactFor any questions or inquiries, please contact us at restaurant@example.com.Thank you for choosing our Restaurant Management System! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers. Enjoy using the system!
+   - Follow the on-screen prompts to navigate through the system's features.
+   - Use the user-friendly interface to manage orders, reservations, employees, restaurant information, and order tracking.
+ 
+## Contributing
+If you'd like to contribute to the development of this Restaurant Management System, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your branch to your forked repository.
+5. Create a pull request to the main repository, explaining your changes.
+
+## License
+This Restaurant Management System is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+For any questions or inquiries, please contact us at patel.bhaskar09@gmail.com
+
+Thank you for choosing ByteBite! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers.
+
+Enjoy using the system!
