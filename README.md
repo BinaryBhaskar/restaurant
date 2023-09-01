@@ -1,7 +1,7 @@
-# ByteBite
-#### Manage, Serve, Thrive
+# FlavourSync
+#### Bringing Taste and Tech in Perfect Harmony.
 
-Welcome to the **ByteBite**, a restaurant management python program that allows you to efficiently manage various aspects of your restaurant, including ordering food, showing the menu, making table reservations, employee management, accessing restaurant information, and tracking orders and tables.
+Welcome to the **FlavourSync**, a restaurant management python program that allows you to efficiently manage various aspects of your restaurant, including ordering food, showing the menu, making table reservations, employee management, accessing restaurant information, and tracking orders and tables.
 
 
 
@@ -86,7 +86,7 @@ If you'd like to contribute to the development of this Restaurant Management Sys
 5. Create a pull request to the main repository, explaining your changes.
 
 ## License
-This Restaurant Management System is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for more details.
+This software is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
 For any questions or inquiries, please contact us at patel.bhaskar09@gmail.com
