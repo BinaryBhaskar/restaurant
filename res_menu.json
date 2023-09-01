@@ -3,67 +3,80 @@
         {
             "name": "Paneer Tikka",
             "price": 199,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Chicken Biryani",
             "price": 249,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Masala Dosa",
             "price": 149,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Margherita Pizza",
             "price": 299,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Chole Bhature",
             "price": 159,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Fish Curry",
             "price": 249,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Samosa",
             "price": 99,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Pasta Alfredo",
             "price": 279,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Rasgulla",
             "price": 49,
-            "category": "sweets"
+            "category": "sweets",
+            "special": false
         },
         {
             "name": "Mutton Rogan Josh",
             "price": 299,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Veg Pulao",
             "price": 179,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "French Fries",
             "price": 129,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Gulab Jamun",
             "price": 59,
-            "category": "sweets"
+            "category": "sweets",
+            "special": false
         },
         {
             "name": "Special Paneer Wrap",
@@ -92,62 +105,74 @@
         {
             "name": "Aloo Paratha",
             "price": 129,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Butter Chicken",
             "price": 279,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Rajma Chawal",
             "price": 149,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Cheeseburger",
             "price": 259,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Palak Paneer",
             "price": 189,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Egg Fried Rice",
             "price": 199,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Pani Puri",
             "price": 79,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Mango Lassi",
             "price": 89,
-            "category": "drinks"
+            "category": "drinks",
+            "special": false
         },
         {
             "name": "Gajar Ka Halwa",
             "price": 69,
-            "category": "sweets"
+            "category": "sweets",
+            "special": false
         },
         {
             "name": "Chicken Korma",
             "price": 289,
-            "category": "non-veg"
+            "category": "non-veg",
+            "special": false
         },
         {
             "name": "Mushroom Pizza",
             "price": 329,
-            "category": "veg"
+            "category": "veg",
+            "special": false
         },
         {
             "name": "Rasmalai",
             "price": 59,
-            "category": "sweets"
+            "category": "sweets",
+            "special": false
         },
         {
             "name": "Special Veg Pulao",
@@ -172,6 +197,12 @@
             "price": 99,
             "category": "sweets",
             "special": true
+        },
+        {
+            "name": "Coke",
+            "price": 74.0,
+            "category": "drinks",
+            "special": false
         }
     ]
 }
