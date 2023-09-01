@@ -42,18 +42,21 @@ def print_categorized_menu(menu_data):
 
     for item in menu_data["menu"]:
         category = item["category"]
-        categorized_menu[category].append([item["name"], item["price"]])
+        if "special" in item and item["special"] == True:
+            if check_weekend():
+                categorized_menu[category].append([item["name"], item["price"]])
+        else:
+            categorized_menu[category].append([item["name"], item["price"]])
 
     table_data = []
     for category, items in categorized_menu.items():
         if items:
             table_data.append([f"{category.capitalize()} Category", ""])
             table_data.extend(items)
-            table_data.append([])  # Add an empty row between categories
+            table_data.append([]) #Add an empty row between categories.
 
     table = tabulate(table_data, headers=["Item", "Price"], tablefmt="grid")
     print(table)
-
 
 
 def main():
