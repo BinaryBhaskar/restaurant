@@ -1,3 +1,5 @@
+#Bytebite, a program originally made by Bhaskar Patel for his school project.
+
 import json
 from datetime import datetime
 from tabulate import tabulate
@@ -60,7 +62,6 @@ def get_input(prompt, given_type, range = []):
         elif given_type == int:
             try:
                 value = int(value)
-                pass
             except ValueError:
                 print("Invalid Response, please re-enter value.")
                 continue
@@ -69,6 +70,7 @@ def get_input(prompt, given_type, range = []):
         else:
             print("Invalid Response, please re-enter value.")
             continue
+
 
 #get_input("y: ", int, range(40))
 # Call the function to print the categorized menu
