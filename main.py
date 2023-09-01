@@ -1,6 +1,6 @@
-#Bytebite, a program originally made by Bhaskar Patel for his school project.
+#FlavourSync, a program originally made by Bhaskar Patel for his school project.
 
-import json
+import json, pytz
 from datetime import datetime
 from tabulate import tabulate
 from res_library import get_input as ginput
@@ -9,8 +9,10 @@ with open("res_menu.json", encoding = 'utf-8') as f1:
     data = json.load(f1)
     menu = json.dumps(data, indent=4)
 
+
 def check_weekend():
-    today = datetime.today().weekday()
+    india_timezone = pytz.timezone('Asia/Kolkata')
+    today = datetime.now(india_timezone).weekday()
     if today < 5:
         return False
     else:
@@ -36,7 +38,6 @@ def add_menu_item(menu_data):
     with open('res_menu.json', encoding = 'utf-8') as f2:
         json.load(f2)
 
-
 def print_categorized_menu(menu_data):
     categorized_menu = {"veg": [], "non-veg": [], "sweets": [], "drinks": []}
 
@@ -60,11 +61,8 @@ def print_categorized_menu(menu_data):
 
 
 def main():
-    print(check_weekend())
-    print_categorized_menu(data)
-    #add_menu_item(data)
-    #print_categorized_menu(data)
-
+    pass
 
 if __name__ == "__main__":
     main()
+
