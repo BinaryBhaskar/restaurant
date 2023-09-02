@@ -1,4 +1,5 @@
 #FlavourSync, a program originally made by Bhaskar Patel for his school project.
+#This fork is being tested by his friend, Karan Patel.
 
 import json, pytz
 from datetime import datetime
