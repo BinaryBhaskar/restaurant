@@ -37,7 +37,7 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
 
 1. Clone the repository to your local machine:
 ```
-git clone https://github.com/Baloryx/restaurant.git
+git clone https://github.com/BinaryBhaskar/restaurant.git
 ```
 
 2. Navigate to the project directory:
