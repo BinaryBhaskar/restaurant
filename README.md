@@ -12,7 +12,7 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
    - Easily customize orders with special requests or dietary preferences.
 
 ### 2. Show Menu
-   - Display the restaurant's menu with details on dishes, prices, and availability.
+   - Display the restaurant's menu with details on dishes and prices.
    - Keep the menu up-to-date with ease.
 
 ### 3. Reservation for a Table
@@ -21,7 +21,7 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
 
 ### Employee Management
    - Keep track of your restaurant's staff.
-   - Add, edit, or remove employee information, including roles and schedules.
+   - Add, edit, or remove employee information, including roles.
 
 ### Restaurant Info
    - Store essential information about your restaurant, such as contact details, operating hours, and location.
@@ -89,8 +89,8 @@ If you'd like to contribute to the development of this Restaurant Management Sys
 This software is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
-For any questions or inquiries, please contact us at patel.bhaskar09@gmail.com
+For any questions or inquiries, please contact us at _patel.bhaskar09@gmail.com_
 
-Thank you for choosing ByteBite! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers.
+Thank you for choosing **FlavourSync**! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers.
 
 Enjoy using the system!
