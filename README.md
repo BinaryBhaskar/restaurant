@@ -89,8 +89,8 @@ If you'd like to contribute to the development of this Restaurant Management Sys
 This software is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
-For any questions or inquiries, please contact us at patel.bhaskar09@gmail.com
+For any questions or inquiries, please contact us at _patel.bhaskar09@gmail.com_
 
-Thank you for choosing ByteBite! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers.
+Thank you for choosing **FlavourSync**! We hope it helps streamline your restaurant's operations and enhance the dining experience for your customers.
 
 Enjoy using the system!
