@@ -232,11 +232,11 @@
             "code": "SCB"
         },
         {
-            "name": "Coke",
+            "name": "Pepsi",
             "price": 74.0,
             "category": "drinks",
             "special": false,
-            "code": "COKE"
+            "code": "PPSI"
         },
         {
             "name": "Water",
@@ -250,13 +250,6 @@
             "price": 99.0,
             "category": "sweets",
             "code": "KK",
-            "special": false
-        },
-        {
-            "name": "Pepsi",
-            "price": 74.0,
-            "category": "drinks",
-            "code": "PPSI",
             "special": false
         }
     ]

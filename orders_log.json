@@ -2,43 +2,6 @@
   "deliveries": [
     {
       "name": "Bhaskar Patel",
-      "order_id": "J659_03-09",
-      "price": 536.0,
-      "order_details": [
-        {
-          "name": "Special Masala Chai",
-          "price": 99.0,
-          "category": "drinks",
-          "special": true,
-          "code": "CHAI"
-        },
-        {
-          "name": "Water",
-          "price": 49.0,
-          "category": "drinks",
-          "special": false,
-          "code": "AQUA"
-        },
-        {
-          "name": "Special Chicken Burger",
-          "price": 269.0,
-          "category": "non-veg",
-          "special": true,
-          "code": "CBGR"
-        },
-        {
-          "name": "Special Iced Coffee",
-          "price": 119.0,
-          "category": "drinks",
-          "special": true,
-          "code": "SIC"
-        }
-      ],
-      "address": "39, Main Str, Mukta",
-      "time_of_order": "2023-09-03 23:47:25.037650+05:30"
-    },
-    {
-      "name": "Bhaskar Patel",
       "order_id": "U005_03-09",
       "price": 202.0,
       "order_details": [
@@ -96,6 +59,59 @@
       ],
       "address": "42, Marketplace Road, Amaldiha",
       "time_of_order": "03/09/2023, Sunday, 23:58"
+    },
+    {
+      "name": "Nitesh Patel",
+      "order_id": "I007_04-09",
+      "price": 772.0,
+      "order_details": [
+        {
+          "name": "Pepsi",
+          "price": 65.0,
+          "category": "drinks",
+          "special": false,
+          "code": "PPSI"
+        },
+        {
+          "name": "Mutton Rogan Josh",
+          "price": 299.0,
+          "category": "non-veg",
+          "special": false,
+          "code": "MRJ"
+        },
+        {
+          "name": "French Fries",
+          "price": 129.0,
+          "category": "veg",
+          "special": false,
+          "code": "FRY"
+        },
+        {
+          "name": "Pasta Alfredo",
+          "price": 279.0,
+          "category": "veg",
+          "special": false,
+          "code": "PA"
+        }
+      ],
+      "address": "72, BLM Road, Suzume Str, Tokyo",
+      "time_of_order": "04/09/2023, Monday, 00:48"
+    },
+    {
+      "name": "Anonymous ",
+      "order_id": "E709_04-09",
+      "price": 49.0,
+      "order_details": [
+        {
+          "name": "Water",
+          "price": 49.0,
+          "category": "drinks",
+          "special": false,
+          "code": "AQUA"
+        }
+      ],
+      "address": "Anonymous ",
+      "time_of_order": "04/09/2023, Monday, 00:52"
     }
   ]
 }

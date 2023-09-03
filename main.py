@@ -68,7 +68,7 @@ def print_categorized_menu(menu_data,for_order = False):
     for item in menu_data["menu"]:
         category = item["category"]
         if item["special"] == True:
-            if check_weekend():
+            if check_weekend() or for_order == False:
                 categorized_menu[category].append([item["name"], item["price"], item["code"]])
         else:
             categorized_menu[category].append([item["name"], item["price"], item["code"]])
@@ -87,7 +87,7 @@ def print_categorized_menu(menu_data,for_order = False):
     if for_order:
         start_order()
     else:
-        option = ginput("Prese 'a' to add new item\nor press 'u' to update existing item\nor 'd' to delete an item\nor press anything to return to home.",str,[],True)
+        option = ginput("Prese 'a' to add new item\nor press 'u' to update existing item\nor 'd' to delete an item\nor press anything to return to home:\n",str,[],True)
         if option in ['a', 'd','u'] :
             is_admin = admin_access()
             if is_admin:
@@ -132,6 +132,7 @@ def update(menu_data, code, new_name, new_price, new_code):
             item["code"] = new_code
             with open('res_menu.json', 'w', encoding='utf-8') as f2:
                 json.dump(menu_data, f2, indent=4)
+            print("Data changed successfully.")
 
 def delitem(menu_data, code):
     for item in menu_data["menu"]:
@@ -139,6 +140,7 @@ def delitem(menu_data, code):
             menu_data["menu"].remove(item)
             with open('res_menu.json', 'w', encoding='utf-8') as f2:
                 json.dump(menu_data, f2, indent=4)
+                print("Data deleted successfully")
 
 def admin_access():
     inkey = input("Enter your Passkey: ")
@@ -227,7 +229,7 @@ def br():
 
 def home():
     br()
-    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n",str,['o','m','t','exit'],True)
+    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n'exit' : Exit Program\n" ,str,['o','m','t','exit'],True)
     if chosen_menu == 'm':
         print_categorized_menu(menudata, False)
         home()
