@@ -1,0 +1,38 @@
+{
+  "deliveries": [
+    {
+      "order_id": null,
+      "price": null,
+      "order_details": null,
+      "address": null,
+      "payment_status": null,
+      "time_of_order": null
+    },
+    {
+      "order_id": null,
+      "price": null,
+      "order_details": null,
+      "address": null,
+      "payment_status": null,
+      "time_of_order": null
+    }
+  ],
+  "reservations": [
+    {
+      "order_id": null,
+      "price": null,
+      "order_details": null,
+      "table_number": null,
+      "payment_status": null,
+      "time_of_order": null
+    },
+    {
+      "order_id": null,
+      "price": null,
+      "order_details": null,
+      "table_number": null,
+      "payment_status": null,
+      "time_of_order": null
+    }
+  ]
+}
