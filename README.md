@@ -8,30 +8,18 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
 ## Features
 
 ### 1. Order Food
-   - Customers can place orders for delivery or dine-in at the restaurant.
+   - Customers can place orders for delivery.
    - Easily customize orders with special requests or dietary preferences.
 
 ### 2. Show Menu
    - Display the restaurant's menu with details on dishes and prices.
    - Keep the menu up-to-date with ease.
-
-### 3. Reservation for a Table
-   - Manage table reservations for customers who plan to dine in.
-   - Check availability, make reservations, and view reservation history.
-
-### Employee Management
-   - Keep track of your restaurant's staff.
-   - Add, edit, or remove employee information, including roles.
-
-### Restaurant Info
-   - Store essential information about your restaurant, such as contact details, operating hours, and location.
-   - Make it easy for customers to find and reach you.
+   - Add/Remove new items easily.
 
 ### Order Tracking
-   - Monitor the status of food orders, whether they are for delivery or dine-in.
-   - Track table occupancy and availability. 
- 
- 
+   - Monitor the status of food orders.
+
+
  
 ## Installation
 
