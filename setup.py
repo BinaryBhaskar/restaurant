@@ -12,13 +12,13 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='sample',
+    name='FlavourSync',
     version='0.1.0',
-    description='Sample package for Python-Guide.org',
+    description='A restaurant management software made by Bhaskar for a school project, but will be worked upon upto his desire',
     long_description=readme,
-    author='Kenneth Reitz',
-    author_email='me@kennethreitz.com',
-    url='https://github.com/kennethreitz/samplemod',
+    author='Bhaskar Patel',
+    author_email='patel.bhaskar09@gmail.com',
+    url='https://github.com/BinaryBhaskar/restaurant',
     license=license,
     packages=find_packages(exclude=('tests', 'docs'))
 )
