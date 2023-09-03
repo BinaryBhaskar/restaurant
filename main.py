@@ -8,13 +8,16 @@ from datetime import datetime as dt
 from tabulate import tabulate
 from res_library import get_input as ginput
 
+india_timezone = pytz.timezone('Asia/Kolkata')
+
 with open("res_menu.json", encoding = 'utf-8') as f1:
     data = json.load(f1)
     menu = json.dumps(data, indent=4)
 
+with open('orders_log.json', 'r', encoding = 'utf-8') as o1:
+    orders_data = json.load(o1)
 
 def check_weekend():
-    india_timezone = pytz.timezone('Asia/Kolkata')
     today = dt.now(india_timezone).weekday()
     if today < 5:
         return False
@@ -101,16 +104,29 @@ def order_info(orderedlist,accepted=False):
         if cancel_continue == 'cancel':
             home()
         else:
-            payment_prompt = gen_pay_id(total_price)
+            address = input("Enter your full address here: ")
+            payment_prompt = gen_pay_id(total_price,orderedlist,address)
             print(payment_prompt)
             br()
             input("Press Enter to return to home. ")
             home()
 
-def gen_pay_id(vtotal_price):
+def gen_pay_id(vtotal_price, order_details, address):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
-    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}"
+    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{dt.now(india_timezone).date()}"
+    new_delivery_order = {
+        "order_id": bill_id,
+        "price": vtotal_price,
+        "order_details": order_details,
+        "address": address,
+        "payment_status": "NOT PAID",
+        "time_of_order": f"{dt.now(india_timezone)}"
+    }
+    data["deliveries"].append(new_delivery_order)
+    with open('orders_log.json', 'w', encoding = 'utf-8') as o2:
+        json.dump(orders_data, o2, indent=2)
+    print("New delivery order has been added to 'deliveries'.")
     return (f"Please kindly pay your bill at the counter\n  Rs.{vtotal_price}\n  Bill ID: {bill_id}")
 
 def br():
