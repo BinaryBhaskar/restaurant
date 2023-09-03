@@ -110,8 +110,8 @@ def order_info(orderedlist,accepted=False):
 def gen_pay_id(vtotal_price):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
-    id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}"
-    return (f"Please kindly pay your bill at the counter\n  Rs.{vtotal_price}\n  Bill ID: {id}")
+    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}"
+    return (f"Please kindly pay your bill at the counter\n  Rs.{vtotal_price}\n  Bill ID: {bill_id}")
 
 def br():
     print("="*70)
@@ -134,7 +134,8 @@ def home():
         info()
 
 def reserve(from_home = False):
-    pass
+    if from_home:
+        pass
 
 def manage_employees():
     pass
