@@ -104,18 +104,20 @@ def order_info(orderedlist,accepted=False):
         if cancel_continue == 'cancel':
             home()
         else:
+            name = input("Enter your name here: ")
             address = input("Enter your full address here: ")
-            payment_prompt = gen_pay_id(total_price,orderedlist,address)
+            payment_prompt = gen_pay_id(total_price,orderedlist,address,name)
             print(payment_prompt)
             br()
             input("Press Enter to return to home. ")
             home()
 
-def gen_pay_id(vtotal_price, order_details, address):
+def gen_pay_id(vtotal_price, order_details, address, name):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
     bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{dt.now(india_timezone).date()}"
     new_delivery_order = {
+        "name": name,
         "order_id": bill_id,
         "price": vtotal_price,
         "order_details": order_details,
