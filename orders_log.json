@@ -1,38 +1,101 @@
 {
   "deliveries": [
     {
-      "order_id": null,
-      "price": null,
-      "order_details": null,
-      "address": null,
-      "payment_status": null,
-      "time_of_order": null
+      "name": "Bhaskar Patel",
+      "order_id": "J659_03-09",
+      "price": 536.0,
+      "order_details": [
+        {
+          "name": "Special Masala Chai",
+          "price": 99.0,
+          "category": "drinks",
+          "special": true,
+          "code": "CHAI"
+        },
+        {
+          "name": "Water",
+          "price": 49.0,
+          "category": "drinks",
+          "special": false,
+          "code": "AQUA"
+        },
+        {
+          "name": "Special Chicken Burger",
+          "price": 269.0,
+          "category": "non-veg",
+          "special": true,
+          "code": "CBGR"
+        },
+        {
+          "name": "Special Iced Coffee",
+          "price": 119.0,
+          "category": "drinks",
+          "special": true,
+          "code": "SIC"
+        }
+      ],
+      "address": "39, Main Str, Mukta",
+      "time_of_order": "2023-09-03 23:47:25.037650+05:30"
     },
     {
-      "order_id": null,
-      "price": null,
-      "order_details": null,
-      "address": null,
-      "payment_status": null,
-      "time_of_order": null
-    }
-  ],
-  "reservations": [
-    {
-      "order_id": null,
-      "price": null,
-      "order_details": null,
-      "table_number": null,
-      "payment_status": null,
-      "time_of_order": null
+      "name": "Bhaskar Patel",
+      "order_id": "U005_03-09",
+      "price": 202.0,
+      "order_details": [
+        {
+          "name": "Samosa",
+          "price": 49.0,
+          "category": "veg",
+          "special": false,
+          "code": "SMS"
+        },
+        {
+          "name": "Coke",
+          "price": 74.0,
+          "category": "drinks",
+          "special": false,
+          "code": "COKE"
+        },
+        {
+          "name": "Pani Puri",
+          "price": 79.0,
+          "category": "veg",
+          "special": false,
+          "code": "PP"
+        }
+      ],
+      "address": "32, Home Str, near Bhaskar's Shop, Mukta",
+      "time_of_order": "03/09/2023, Sunday, 23:54"
     },
     {
-      "order_id": null,
-      "price": null,
-      "order_details": null,
-      "table_number": null,
-      "payment_status": null,
-      "time_of_order": null
+      "name": "Karan Patel",
+      "order_id": "P698_03-09",
+      "price": 727.0,
+      "order_details": [
+        {
+          "name": "Chicken Biryani",
+          "price": 249.0,
+          "category": "non-veg",
+          "special": false,
+          "code": "CBI"
+        },
+        {
+          "name": "Mushroom Pizza",
+          "price": 329.0,
+          "category": "veg",
+          "special": false,
+          "code": "MPZ"
+        },
+        {
+          "name": "Masala Dosa",
+          "price": 149.0,
+          "category": "veg",
+          "special": false,
+          "code": "MD"
+        }
+      ],
+      "address": "42, Marketplace Road, Amaldiha",
+      "time_of_order": "03/09/2023, Sunday, 23:58"
     }
   ]
 }

@@ -4,31 +4,46 @@ import string
 import random
 import json
 import pytz
+import sys
 from datetime import datetime as dt
 from tabulate import tabulate
-from res_library import get_input as ginput
 
 india_timezone = pytz.timezone('Asia/Kolkata')
+passkey = 'AdminB09'
 
 with open("res_menu.json", encoding = 'utf-8') as f1:
-    data = json.load(f1)
-    menu = json.dumps(data, indent=4)
+    menudata = json.load(f1) #Menu Data
+    menu = json.dumps(menudata, indent=4)
 
 with open('orders_log.json', 'r', encoding = 'utf-8') as o1:
-    orders_data = json.load(o1)
+    orderdata = json.load(o1) #Orders Data
 
 def check_weekend():
     today = dt.now(india_timezone).weekday()
     if today < 5:
-        return False
+        return False #If not Weekend
     else:
-        return True
+        return True #If Weekend
 
-def add_menu_item(menu_data):
-    name = input("Enter the name of the new menu item: ")
+def add_menu_item(menu_data): #Add new Item to Menu
+    nameslist = [item['name'] for item in menu_data["menu"]]
+    codeslist = [item['code'] for item in menu_data["menu"]]
+    while True:
+        name = input("Enter the name of the new menu item: ").title()
+        if name in nameslist:
+            print("Item already exists.")
+            continue
+        else:
+            break
     price = float(input("Enter the price of the new menu item: "))
     category = ginput("Enter the category of the new menu item (veg/non-veg/sweets/drinks): ",str,["veg", "non-veg", "sweets", "drinks"], True)
-    code = input("Enter the code of the new item")
+    while True:
+        code = input("Enter the code of the new item: ").upper()
+        if code in codeslist:
+            print("Code already exists.")
+            continue
+        else:
+            break
     special = input("Is this a special item for weekends? (y/n): ").lower() == 'y'
 
     new_item = {
@@ -72,12 +87,70 @@ def print_categorized_menu(menu_data,for_order = False):
     if for_order:
         start_order()
     else:
-        input("Prese Enter to return to home.")
+        option = ginput("Prese 'a' to add new item\nor press 'u' to update existing item\nor 'd' to delete an item\nor press anything to return to home.",str,[],True)
+        if option in ['a', 'd','u'] :
+            is_admin = admin_access()
+            if is_admin:
+                nameslist = [item['name'] for item in menu_data["menu"]]
+                codeslist = [item['code'] for item in menu_data["menu"]]
+                codeslistlower = [code.lower() for code in codeslist]
+                if option == 'a':
+                    add_menu_item(menudata)
+                elif option == 'u':
+                    code = ginput("Enter the code of the item to update: ",str,codeslistlower, True)
+                    while True:
+                        name = input("Enter the new name of the menu item: ").title()
+                        if name in nameslist:
+                            print("Item already exists.")
+                            continue
+                        else:
+                            break
+                    price = float(input("Enter the new price of the menu item: "))       
+                    while True:
+                        new_code = input("Enter the new code of the item: ").upper()
+                        if new_code in codeslist:
+                            print("Code already exists.")
+                            continue
+                        else:
+                            break
+                    update(menudata,code.upper(), name, price, new_code)
+                elif option == 'd':
+                    codeslistlower = [item['code'].lower() for item in menu_data["menu"]]
+                    code = ginput("Enter the code of the item to delete: ",str,codeslistlower, True)
+                    delitem(menudata, code.upper())
+            else:
+                print("You don't have access.")
+                home()
+        else:
+            home()
+
+def update(menu_data, code, new_name, new_price, new_code):
+    for item in menu_data["menu"]:
+        if item["code"] == code:
+            item["name"] = new_name
+            item["price"] = new_price
+            item["code"] = new_code
+            with open('res_menu.json', 'w', encoding='utf-8') as f2:
+                json.dump(menu_data, f2, indent=4)
+
+def delitem(menu_data, code):
+    for item in menu_data["menu"]:
+        if item["code"] == code:
+            menu_data["menu"].remove(item)
+            with open('res_menu.json', 'w', encoding='utf-8') as f2:
+                json.dump(menu_data, f2, indent=4)
+
+def admin_access():
+    inkey = input("Enter your Passkey: ")
+    if inkey == passkey:
+        return True
+    else:
+        return False
 
 def start_order():
     order_list = []
     menu_list = ['done']
-    menu_data = data['menu']
+    menu_data = menudata['menu']
     for item in menu_data:
         menu_list.append(item["code"].lower())
     while True:
@@ -88,6 +161,24 @@ def start_order():
         order_list.append(buy_item)
         order_info(order_list)
     order_info(order_list, True)
+
+def ginput(prompt, given_type, in_range, do_lower):
+    while True:
+        value = input(prompt)
+        if type(value) == given_type:
+            if do_lower:
+                value = value.lower()
+        elif given_type == int:
+            try:
+                value = int(value)
+            except ValueError:
+                print("Invalid Response, please re-enter value.")
+                continue
+        if (in_range == []) or (in_range != [] and value in in_range):
+            return value
+        else:
+            print("Invalid Response, please re-enter value.")
+            continue
 
 def order_info(orderedlist,accepted=False):
     br()
@@ -106,6 +197,7 @@ def order_info(orderedlist,accepted=False):
         else:
             name = input("Enter your name here: ")
             address = input("Enter your full address here: ")
+            br()
             payment_prompt = gen_pay_id(total_price,orderedlist,address,name)
             print(payment_prompt)
             br()
@@ -115,54 +207,60 @@ def order_info(orderedlist,accepted=False):
 def gen_pay_id(vtotal_price, order_details, address, name):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
-    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{dt.now(india_timezone).date()}"
+    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
     new_delivery_order = {
         "name": name,
         "order_id": bill_id,
         "price": vtotal_price,
         "order_details": order_details,
         "address": address,
-        "payment_status": "NOT PAID",
-        "time_of_order": f"{dt.now(india_timezone)}"
+        "time_of_order": f"{dt.now(india_timezone).strftime('%d/%m/%Y, %A, %H:%M')}"
     }
-    data["deliveries"].append(new_delivery_order)
+    orderdata["deliveries"].append(new_delivery_order)
     with open('orders_log.json', 'w', encoding = 'utf-8') as o2:
-        json.dump(orders_data, o2, indent=2)
-    print("New delivery order has been added to 'deliveries'.")
-    return (f"Please kindly pay your bill at the counter\n  Rs.{vtotal_price}\n  Bill ID: {bill_id}")
+        json.dump(orderdata, o2, indent=2)
+    print("New delivery order has been added to 'deliveries'.\nYour order should be delivered to you within 30 minutes.")
+    return (f"Please kindly pay your bill during delivery.\n  Rs.{vtotal_price}\n  Bill ID: {bill_id}")
 
 def br():
     print("="*70)
 
 def home():
     br()
-    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Order\n'm' : Show Menu\n'r' : Table Reservation\n'e' : Employee Management\n'i' : Restaurant Info\n",str,['o','e','i','m','t','r'],True)
-    if chosen_menu == 'r':
-        reserve()
-    elif chosen_menu == 'm':
-        print_categorized_menu(data, False)
+    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n",str,['o','m','t','exit'],True)
+    if chosen_menu == 'm':
+        print_categorized_menu(menudata, False)
         home()
-    elif chosen_menu == 'e':
-        manage_employees()
     elif chosen_menu == 'o':
-        print_categorized_menu(data, True)
+        print_categorized_menu(menudata, True)
     elif chosen_menu == 't':
         tracking()
-    elif chosen_menu == 'i':
-        info()
-
-def reserve(from_home = False):
-    if from_home:
-        pass
-
-def manage_employees():
-    pass
+    elif chosen_menu == 'exit':
+        sys.exit()
 
 def tracking():
-    pass
+    br()
+    all_orders = [order['order_id'] for order in orderdata['deliveries']]
+    orders_and_all = all_orders+['all']
+    get_id = ginput("Enter your Order ID here (Enter 'all' to see all):  ", str, orders_and_all, False)
+    if get_id == 'all':
+        for item_id in all_orders:
+            br()
+            get_order_info(item_id)
+    else:
+        br()
+        get_order_info(get_id)
+    br()
+    input("Enter to go to home.")
+    home()
 
-def info():
-    pass
+def get_order_info(order_id_input):
+    index = next((i for i, delivery in enumerate(orderdata["deliveries"]) if delivery["order_id"] == order_id_input), None)
+    ordered_by = orderdata['deliveries'][index]['name']
+    order_value = orderdata['deliveries'][index]['price']
+    ordered_items = [item['name'] for item in orderdata['deliveries'][index]['order_details']]
+    order_time = orderdata['deliveries'][index]['time_of_order']
+    print(f"Order ID: {order_id_input}\nOrdered By: {ordered_by}\nTotal price: {order_value}\nTime of Order: {order_time}\nOrdered Items:{ordered_items}")
 
 def main():
     home()

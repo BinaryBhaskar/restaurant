@@ -244,6 +244,20 @@
             "category": "drinks",
             "special": false,
             "code": "AQUA"
+        },
+        {
+            "name": "Kaju Katli",
+            "price": 99.0,
+            "category": "sweets",
+            "code": "KK",
+            "special": false
+        },
+        {
+            "name": "Pepsi",
+            "price": 74.0,
+            "category": "drinks",
+            "code": "PPSI",
+            "special": false
         }
     ]
 }
