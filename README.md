@@ -17,7 +17,7 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
    - Add/Remove new items easily.
 
 ### Order Tracking
-   - Monitor the status of food orders.
+   - Check the details of food orders.
 
 
  
