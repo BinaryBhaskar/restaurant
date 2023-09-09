@@ -5,11 +5,17 @@ import random #For generating OrderID
 import json
 import pytz
 import sys
+from geopy.geocoders import Nominatim
+from math import radians, sin, cos, sqrt, atan2
 from datetime import datetime as dt
 from tabulate import tabulate
 
+
 india_timezone = pytz.timezone('Asia/Kolkata')
 passkey = 'AdminB09'
+chandrapur_lat = 21.7067
+chandrapur_lon = 83.2325
+
 
 with open("res_menu.json", encoding = 'utf-8') as f1:
     menudata = json.load(f1) #Menu Data
@@ -198,13 +204,50 @@ def order_info(orderedlist,accepted=False):
             home()
         else:
             name = input("Enter your name here: ")
-            address = input("Enter your full address here: ")
+            while True:
+                address = input("Enter your full address here: ").strip()
+                if address == "":
+                    print("Enter a valid address: ")
+                else:
+                    geolocator = Nominatim(user_agent="distance_calculator")
+                    user_location = geolocator.geocode(address)
+                    if user_location:
+                        # Extract user's latitude and longitude
+                        user_lat = user_location.latitude
+                        user_lon = user_location.longitude
+                        # Calculate the distance
+                        distance_km = distance(chandrapur_lat, chandrapur_lon, user_lat, user_lon)
+                        if distance_km > 35:
+                            toofar = ginput(f"The distance between our restaurant at Chandrapur is too far ({distance_km:.2f}km is more than 35km) from your location.\n   Please try something from the following:\n      'a' to re-enter address\n      'x' to cancel order\n", str, ["a","x"], True)
+                            if toofar == "x":
+                                print("Order Cancelled")
+                                br()
+                                input("Press Enter to return to home. ")
+                                home()
+                            elif toofar == "a":
+                                continue
+                        break
+                    else:
+                        print(f"Could not find coordinates for {address}. Please provide a valid address.")
+                        continue
             br()
             payment_prompt = gen_pay_id(total_price,orderedlist,address,name)
             print(payment_prompt)
             br()
             input("Press Enter to return to home. ")
             home()
+
+def distance(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    earth_radius = 6371.0
+    distancev = earth_radius * c
+    return distancev
+
 
 def gen_pay_id(vtotal_price, order_details, address, name):
     alphabetical_caps = list(string.ascii_uppercase)
