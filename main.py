@@ -1,7 +1,7 @@
 #FlavourSync, a program originally made by Bhaskar Patel for his school project.
 
-import string
-import random
+import string #To get letters A-Z and a-z
+import random #For generating OrderID
 import json
 import pytz
 import sys
@@ -209,7 +209,11 @@ def order_info(orderedlist,accepted=False):
 def gen_pay_id(vtotal_price, order_details, address, name):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
-    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
+    all_orders = [order['order_id'] for order in orderdata['deliveries']]
+    while True:
+        bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
+        if bill_id not in all_orders:
+            break
     new_delivery_order = {
         "name": name,
         "order_id": bill_id,
