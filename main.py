@@ -104,6 +104,12 @@ def print_categorized_menu(menu_data,for_order = False):
                     add_menu_item(menudata)
                 elif option == 'u':
                     code = ginput("Enter the code of the item to update: ",str,codeslistlower, True)
+                    if code in codeslistlower:
+                        all_items = [item for item in menudata["menu"]]
+                        itemchosen = [item for item in all_items if item["code"].lower() == code]
+                        if itemchosen != None:
+                            nameslist.remove(itemchosen[0]["name"])
+                            codeslistlower.remove(itemchosen[0]["code"].lower())
                     while True:
                         name = input("Enter the new name of the menu item: ").title()
                         if name in nameslist:
@@ -111,15 +117,22 @@ def print_categorized_menu(menu_data,for_order = False):
                             continue
                         else:
                             break
-                    price = float(input("Enter the new price of the menu item: "))       
                     while True:
-                        new_code = input("Enter the new code of the item: ").upper()
-                        if new_code in codeslist:
+                        try:
+                            price = float(input("Enter the new price of the menu item: ")) 
+                        except ValueError:
+                            print("Please enter a floating value.")
+                            continue
+                        else:
+                            break
+                    while True:
+                        new_code = input("Enter the new code of the item: ").lower()
+                        if new_code in codeslistlower:
                             print("Code already exists.")
                             continue
                         else:
                             break
-                    update(menudata,code.upper(), name, price, new_code)
+                    update(menudata,code.upper(), name.title(), price, new_code.upper())
                 elif option == 'd':
                     codeslistlower = [item['code'].lower() for item in menu_data["menu"]]
                     code = ginput("Enter the code of the item to delete: ",str,codeslistlower, True)
@@ -218,6 +231,7 @@ def order_info(orderedlist,accepted=False):
                         # Calculate the distance
                         distance_km = distance(chandrapur_lat, chandrapur_lon, user_lat, user_lon)
                         if distance_km > 35:
+                            br()
                             toofar = ginput(f"The distance between our restaurant at Chandrapur is too far ({distance_km:.2f}km is more than 35km) from your location.\n   Please try something from the following:\n      'a' to re-enter address\n      'x' to cancel order\n", str, ["a","x"], True)
                             if toofar == "x":
                                 print("Order Cancelled")

@@ -1,7 +1,7 @@
 from geopy.geocoders import Nominatim
 from math import radians, sin, cos, sqrt, atan2
 
-def haversine_distance(lat1, lon1, lat2, lon2):
+def distance(lat1, lon1, lat2, lon2):
     # Convert latitude and longitude from degrees to radians
     lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
 
@@ -28,18 +28,19 @@ user_address = "Mukta, Chhattisgarh, 495692"
 # Geocode the user's address
 user_location = geolocator.geocode(user_address)
 
-if user_location:
-    # Coordinates for Chandrapur, Chhattisgarh (You can replace these with actual coordinates)
-    chandrapur_lat = 21.7067
-    chandrapur_lon = 83.2325
+if __name__ == "__main__":
+    if user_location:
+        # Coordinates for Chandrapur, Chhattisgarh (You can replace these with actual coordinates)
+        chandrapur_lat = 21.7067
+        chandrapur_lon = 83.2325
 
-    # Extract user's latitude and longitude
-    user_lat = user_location.latitude
-    user_lon = user_location.longitude
+        # Extract user's latitude and longitude
+        user_lat = user_location.latitude
+        user_lon = user_location.longitude
 
-    # Calculate the distance
-    distance_km = haversine_distance(chandrapur_lat, chandrapur_lon, user_lat, user_lon)
+        # Calculate the distance
+        distance_km = distance(chandrapur_lat, chandrapur_lon, user_lat, user_lon)
 
-    print(f"The straight-line distance between {user_address} and Chandrapur, Chhattisgarh is {distance_km:.2f} kilometers.")
-else:
-    print(f"Could not find coordinates for {user_address}. Please provide a valid address.")
+        print(f"The straight-line distance between {user_address} and Chandrapur, Chhattisgarh is {distance_km:.2f} kilometers.")
+    else:
+        print(f"Could not find coordinates for {user_address}. Please provide a valid address.")

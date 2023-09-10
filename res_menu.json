@@ -58,7 +58,7 @@
         },
         {
             "name": "Rasgulla",
-            "price": 49.0,
+            "price": 49.0,2
             "category": "sweets",
             "special": false,
             "code": "RS"
@@ -233,7 +233,7 @@
         },
         {
             "name": "Pepsi",
-            "price": 74.0,
+            "price": 75.0,
             "category": "drinks",
             "special": false,
             "code": "PPSI"
@@ -250,6 +250,13 @@
             "price": 99.0,
             "category": "sweets",
             "code": "KK",
+            "special": false
+        },
+        {
+            "name": "Coke",
+            "price": 75.0,
+            "category": "drinks",
+            "code": "COKE",
             "special": false
         }
     ]
