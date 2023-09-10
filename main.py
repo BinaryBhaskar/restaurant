@@ -307,9 +307,13 @@ def tracking():
     orders_and_all = all_orders+['all']
     get_id = ginput("Enter your Order ID here (Enter 'all' to see all):  ", str, orders_and_all, False)
     if get_id == 'all':
-        for item_id in all_orders:
-            br()
-            get_order_info(item_id)
+        is_admin = admin_access()
+        if is_admin:
+            for item_id in all_orders:
+                br()
+                get_order_info(item_id)
+        else:
+            print("You need admin access")
     else:
         br()
         get_order_info(get_id)

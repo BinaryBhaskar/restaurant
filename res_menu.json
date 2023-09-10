@@ -58,7 +58,7 @@
         },
         {
             "name": "Rasgulla",
-            "price": 49.0,2
+            "price": 49.0,
             "category": "sweets",
             "special": false,
             "code": "RS"
@@ -258,6 +258,13 @@
             "category": "drinks",
             "code": "COKE",
             "special": false
+        },
+        {
+            "name": "Special Salad",
+            "price": 49.0,
+            "category": "veg",
+            "code": "SLD",
+            "special": true
         }
     ]
 }
