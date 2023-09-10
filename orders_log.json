@@ -1,9 +1,9 @@
 {
   "deliveries": [
     {
-      "name": "Bhaskar Patel",
-      "order_id": "U005_03-09",
-      "price": 202.0,
+      "name": "Bhaskar",
+      "order_id": "R908_09-09",
+      "price": 351.0,
       "order_details": [
         {
           "name": "Samosa",
@@ -13,71 +13,11 @@
           "code": "SMS"
         },
         {
-          "name": "Coke",
+          "name": "Pepsi",
           "price": 74.0,
           "category": "drinks",
           "special": false,
-          "code": "COKE"
-        },
-        {
-          "name": "Pani Puri",
-          "price": 79.0,
-          "category": "veg",
-          "special": false,
-          "code": "PP"
-        }
-      ],
-      "address": "32, Home Str, near Bhaskar's Shop, Mukta",
-      "time_of_order": "03/09/2023, Sunday, 23:54"
-    },
-    {
-      "name": "Karan Patel",
-      "order_id": "P698_03-09",
-      "price": 727.0,
-      "order_details": [
-        {
-          "name": "Chicken Biryani",
-          "price": 249.0,
-          "category": "non-veg",
-          "special": false,
-          "code": "CBI"
-        },
-        {
-          "name": "Mushroom Pizza",
-          "price": 329.0,
-          "category": "veg",
-          "special": false,
-          "code": "MPZ"
-        },
-        {
-          "name": "Masala Dosa",
-          "price": 149.0,
-          "category": "veg",
-          "special": false,
-          "code": "MD"
-        }
-      ],
-      "address": "42, Marketplace Road, Amaldiha",
-      "time_of_order": "03/09/2023, Sunday, 23:58"
-    },
-    {
-      "name": "Nitesh Patel",
-      "order_id": "I007_04-09",
-      "price": 772.0,
-      "order_details": [
-        {
-          "name": "Pepsi",
-          "price": 65.0,
-          "category": "drinks",
-          "special": false,
           "code": "PPSI"
-        },
-        {
-          "name": "Mutton Rogan Josh",
-          "price": 299.0,
-          "category": "non-veg",
-          "special": false,
-          "code": "MRJ"
         },
         {
           "name": "French Fries",
@@ -87,31 +27,82 @@
           "code": "FRY"
         },
         {
-          "name": "Pasta Alfredo",
-          "price": 279.0,
-          "category": "veg",
-          "special": false,
-          "code": "PA"
+          "name": "Special Masala Chai",
+          "price": 99.0,
+          "category": "drinks",
+          "special": true,
+          "code": "CHAI"
         }
       ],
-      "address": "72, BLM Road, Suzume Str, Tokyo",
-      "time_of_order": "04/09/2023, Monday, 00:48"
+      "address": "Mukta, Chhattisgarh, 495692",
+      "time_of_order": "09/09/2023, Saturday, 23:49"
     },
     {
-      "name": "Anonymous ",
-      "order_id": "E709_04-09",
-      "price": 49.0,
+      "name": "Karan",
+      "order_id": "A321_10-09",
+      "price": 249.0,
       "order_details": [
         {
-          "name": "Water",
-          "price": 49.0,
+          "name": "Coke",
+          "price": 75.0,
+          "category": "drinks",
+          "code": "COKE",
+          "special": false
+        },
+        {
+          "name": "Pepsi",
+          "price": 75.0,
           "category": "drinks",
           "special": false,
-          "code": "AQUA"
+          "code": "PPSI"
+        },
+        {
+          "name": "Special Chocolate Brownie",
+          "price": 99.0,
+          "category": "sweets",
+          "special": true,
+          "code": "SCB"
         }
       ],
-      "address": "Anonymous ",
-      "time_of_order": "04/09/2023, Monday, 00:52"
+      "address": "49, Mukta, Chhattisgarh",
+      "time_of_order": "10/09/2023, Sunday, 08:09"
+    },
+    {
+      "name": "Nitesh",
+      "order_id": "S857_10-09",
+      "price": 732.0,
+      "order_details": [
+        {
+          "name": "Special Chicken Curry",
+          "price": 319.0,
+          "category": "non-veg",
+          "special": true,
+          "code": "SCC"
+        },
+        {
+          "name": "Pani Puri",
+          "price": 79.0,
+          "category": "veg",
+          "special": false,
+          "code": "PP"
+        },
+        {
+          "name": "Cheeseburger",
+          "price": 259.0,
+          "category": "non-veg",
+          "special": false,
+          "code": "CB"
+        },
+        {
+          "name": "Pepsi",
+          "price": 75.0,
+          "category": "drinks",
+          "special": false,
+          "code": "PPSI"
+        }
+      ],
+      "address": "Mukta, Chhattisgarh",
+      "time_of_order": "10/09/2023, Sunday, 08:18"
     }
   ]
 }

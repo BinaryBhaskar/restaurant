@@ -1,15 +1,21 @@
 #FlavourSync, a program originally made by Bhaskar Patel for his school project.
 
-import string
-import random
+import string #To get letters A-Z and a-z
+import random #For generating OrderID
 import json
 import pytz
 import sys
+from geopy.geocoders import Nominatim
+from math import radians, sin, cos, sqrt, atan2
 from datetime import datetime as dt
 from tabulate import tabulate
 
+
 india_timezone = pytz.timezone('Asia/Kolkata')
 passkey = 'AdminB09'
+chandrapur_lat = 21.7067
+chandrapur_lon = 83.2325
+
 
 with open("res_menu.json", encoding = 'utf-8') as f1:
     menudata = json.load(f1) #Menu Data
@@ -98,6 +104,12 @@ def print_categorized_menu(menu_data,for_order = False):
                     add_menu_item(menudata)
                 elif option == 'u':
                     code = ginput("Enter the code of the item to update: ",str,codeslistlower, True)
+                    if code in codeslistlower:
+                        all_items = [item for item in menudata["menu"]]
+                        itemchosen = [item for item in all_items if item["code"].lower() == code]
+                        if itemchosen != None:
+                            nameslist.remove(itemchosen[0]["name"])
+                            codeslistlower.remove(itemchosen[0]["code"].lower())
                     while True:
                         name = input("Enter the new name of the menu item: ").title()
                         if name in nameslist:
@@ -105,15 +117,22 @@ def print_categorized_menu(menu_data,for_order = False):
                             continue
                         else:
                             break
-                    price = float(input("Enter the new price of the menu item: "))       
                     while True:
-                        new_code = input("Enter the new code of the item: ").upper()
-                        if new_code in codeslist:
+                        try:
+                            price = float(input("Enter the new price of the menu item: ")) 
+                        except ValueError:
+                            print("Please enter a floating value.")
+                            continue
+                        else:
+                            break
+                    while True:
+                        new_code = input("Enter the new code of the item: ").lower()
+                        if new_code in codeslistlower:
                             print("Code already exists.")
                             continue
                         else:
                             break
-                    update(menudata,code.upper(), name, price, new_code)
+                    update(menudata,code.upper(), name.title(), price, new_code.upper())
                 elif option == 'd':
                     codeslistlower = [item['code'].lower() for item in menu_data["menu"]]
                     code = ginput("Enter the code of the item to delete: ",str,codeslistlower, True)
@@ -198,7 +217,33 @@ def order_info(orderedlist,accepted=False):
             home()
         else:
             name = input("Enter your name here: ")
-            address = input("Enter your full address here: ")
+            while True:
+                address = input("Enter your full address here: ").strip()
+                if address == "":
+                    print("Enter a valid address: ")
+                else:
+                    geolocator = Nominatim(user_agent="distance_calculator")
+                    user_location = geolocator.geocode(address)
+                    if user_location:
+                        # Extract user's latitude and longitude
+                        user_lat = user_location.latitude
+                        user_lon = user_location.longitude
+                        # Calculate the distance
+                        distance_km = distance(chandrapur_lat, chandrapur_lon, user_lat, user_lon)
+                        if distance_km > 35:
+                            br()
+                            toofar = ginput(f"The distance between our restaurant at Chandrapur is too far ({distance_km:.2f}km is more than 35km) from your location.\n   Please try something from the following:\n      'a' to re-enter address\n      'x' to cancel order\n", str, ["a","x"], True)
+                            if toofar == "x":
+                                print("Order Cancelled")
+                                br()
+                                input("Press Enter to return to home. ")
+                                home()
+                            elif toofar == "a":
+                                continue
+                        break
+                    else:
+                        print(f"Could not find coordinates for {address}. Please provide a valid address.")
+                        continue
             br()
             payment_prompt = gen_pay_id(total_price,orderedlist,address,name)
             print(payment_prompt)
@@ -206,10 +251,26 @@ def order_info(orderedlist,accepted=False):
             input("Press Enter to return to home. ")
             home()
 
+def distance(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    earth_radius = 6371.0
+    distancev = earth_radius * c
+    return distancev
+
+
 def gen_pay_id(vtotal_price, order_details, address, name):
     alphabetical_caps = list(string.ascii_uppercase)
     numerical_digits = [str(i) for i in range(10)]
-    bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
+    all_orders = [order['order_id'] for order in orderdata['deliveries']]
+    while True:
+        bill_id = f"{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
+        if bill_id not in all_orders:
+            break
     new_delivery_order = {
         "name": name,
         "order_id": bill_id,
