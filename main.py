@@ -5,7 +5,7 @@
 import sys #To exit program smoothly
 from datetime import datetime as dt #To fetch date time data for deliveries and showing menu
 import string #To get ASCII letters
-import difflib
+import difflib #To compare strings
 import random #For generating OrderID
 import json #To read/write menu and orders files
 import pytz #To get India Timezone
