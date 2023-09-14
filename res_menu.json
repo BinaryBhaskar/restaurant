@@ -173,11 +173,11 @@
             "price": 89.0,
             "category": "drinks",
             "special": false,
-            "code": "MLSI"
+            "code": "MSI"
         },
         {
             "name": "Gajar Ka Halwa",
-            "price": 69.0,
+            "price": 119.0,
             "category": "sweets",
             "special": false,
             "code": "NGH"
@@ -239,13 +239,6 @@
             "code": "PPSI"
         },
         {
-            "name": "Water",
-            "price": 49.0,
-            "category": "drinks",
-            "special": false,
-            "code": "AQUA"
-        },
-        {
             "name": "Kaju Katli",
             "price": 99.0,
             "category": "sweets",
@@ -265,6 +258,13 @@
             "category": "veg",
             "code": "SLD",
             "special": true
+        },
+        {
+            "name": "Water",
+            "price": 30.0,
+            "category": "drinks",
+            "code": "AQUA",
+            "special": false
         }
     ]
 }
