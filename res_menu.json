@@ -2,10 +2,10 @@
     "menu": [
         {
             "name": "Paneer Tikka",
-            "price": 199.0,
+            "price": 189.0,
             "category": "veg",
             "special": false,
-            "code": "PT"
+            "code": "PNRT"
         },
         {
             "name": "Chicken Biryani",

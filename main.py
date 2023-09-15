@@ -26,9 +26,9 @@ else:
     super_access = False
 
 with open("res_menu.json", encoding = 'utf-8') as f1: #Open Menu file
-    menudata = json.load(f1) 
+    menudata = json.load(f1)
     menu = json.dumps(menudata, indent=4)
-    
+
 with open('orders_log.json', 'r', encoding = 'utf-8') as o1: #Open Orders file
     orderdata = json.load(o1)
 
@@ -135,7 +135,7 @@ def print_categorized_menu(menu_data,for_order = False): #Code to print Menu acc
                         all_items = [item for item in menudata["menu"]]
                         itemchosen = [item for item in all_items if item["code"].lower() == code]
                         if itemchosen is not None: #Remove names of chosen Item to handle same name/code conflict if name/code aren't being changed
-                            nameslist.remove(itemchosen[0]["name"]) 
+                            nameslist.remove(itemchosen[0]["name"])
                             codeslistlower.remove(itemchosen[0]["code"].lower())
 
                     while True: #Get new, non conflicting name
@@ -148,7 +148,7 @@ def print_categorized_menu(menu_data,for_order = False): #Code to print Menu acc
 
                     while True: #Get New Price
                         try:
-                            price = float(input("Enter the new price of the menu item: ")) 
+                            price = float(input("Enter the new price of the menu item: "))
                         except ValueError:
                             print("Please enter a floating value.")
                             continue
@@ -209,7 +209,7 @@ def admin_access(): #Checks admin access through passkey
 def start_order(): #Ordering mechanism
     order_list = []
     menu_list = ['done']
-    for item in menudata['menu']: 
+    for item in menudata['menu']:
         menu_list.append(item["code"].lower())
     while True:
         add_item = ginput("Enter the code of the dish you want to buy (Write 'done' to proceed): ", str, menu_list, True)
@@ -263,8 +263,7 @@ def order_info(orderedlist,accepted=False): #Show current order info and price, 
             home()
         else:
             while True:
-                name = input("Enter your name here: ")
-                address = input("Enter your name here: ").strip().title()
+                name = input("Enter your name here: ").strip().title()
                 if name == "":
                     print("Enter a valid name: ")
                 else:
@@ -291,7 +290,7 @@ def gen_pay_id(vtotal_price, order_details, address, name): #Generate a non conf
         bill_id = f"{random.choice(alphabetical_caps)}{random.choice(alphabetical_caps)}{random.choice(numerical_digits)}{random.choice(numerical_digits)}_{dt.now(india_timezone).strftime('%d-%m')}"
         if bill_id not in all_orders:
             break
-            
+
     new_delivery_order = {
         "name": name,
         "order_id": bill_id,
@@ -300,7 +299,7 @@ def gen_pay_id(vtotal_price, order_details, address, name): #Generate a non conf
         "address": address,
         "time_of_order": f"{dt.now(india_timezone).strftime('%d/%m/%Y, %A, %H:%M')}"
     }
-    
+
     orderdata["deliveries"].append(new_delivery_order)
     with open('orders_log.json', 'w', encoding = 'utf-8') as o2: #Add new order to Orders file
         json.dump(orderdata, o2, indent=2)
