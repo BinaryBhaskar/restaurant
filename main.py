@@ -263,8 +263,7 @@ def order_info(orderedlist,accepted=False): #Show current order info and price, 
             home()
         else:
             while True:
-                name = input("Enter your name here: ")
-                address = input("Enter your name here: ").strip().title()
+                name = input("Enter your name here: ").strip().title()
                 if name == "":
                     print("Enter a valid name: ")
                 else:
