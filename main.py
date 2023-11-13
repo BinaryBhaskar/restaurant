@@ -313,7 +313,7 @@ def br(): #Prints a line of equal signs
 
 def home(): #Home screen
     br()
-    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n'exit' : Exit Program\n" ,str,['o','m','t','exit'],True)
+    chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n'a' : Accounting\n'exit' : Exit Program\n" ,str,['o','m','t','a','exit'],True)
     if chosen_menu == 'm':
         print_categorized_menu(menudata, False)
         home()
@@ -321,8 +321,27 @@ def home(): #Home screen
         print_categorized_menu(menudata, True)
     elif chosen_menu == 't':
         tracking()
+    elif chosen_menu == 'a':
+        accounting()
     elif chosen_menu == 'exit':
         sys.exit()
+
+def accounting():
+    br()
+    is_admin = admin_access()
+    if is_admin:
+        br()
+        sales = [order['price'] for order in orderdata['deliveries']]
+        print(f"    Accounting:\n\n\
+    Total Deliveries: {len(sales)}\n\
+    Total Payment: Rs.{sum(sales)}\n\
+    Estimated Expenses: Rs.{sum(sales)*62/100}\n\
+    Estimated Profit (without GST): Rs.{sum(sales)*38/100}")
+    else:
+        print("You need admin access")
+    br()
+    input("Enter to go to home.")
+    home()
 
 
 def tracking(): #Track Existing and Current Order by its ID or show all Orders
@@ -360,7 +379,7 @@ def main(): #Main
     home()
 
 
-if __name__ == "__main__": #Call main if ran as a program
+if __name__ == "__main__":
     br()
     print("Welcome to FlavourSync")
     main()
