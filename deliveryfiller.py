@@ -59,11 +59,11 @@ def gen(n):
         "order_details": order_details,
         "address": f"{random.randint(1,99)}, {random.choice(places)}, {random.choice(countries)}",
         "time_of_order": f"{formatted_random_datetime}"
-    }
-
+        }
 
         orderdata["deliveries"].append(new_delivery_order)
         with open('orders_log.json', 'w', encoding = 'utf-8') as o2: #Add new order to Orders file
             json.dump(orderdata, o2, indent=2)
 
-gen(120)
+x = int(input("How many orders to generate randomly: "))
+gen(x)
