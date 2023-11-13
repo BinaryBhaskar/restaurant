@@ -379,7 +379,7 @@ def main(): #Main
     home()
 
 
-if __name__ == "__main__": #Call main if ran as a program
+if __name__ == "__main__":
     br()
     print("Welcome to FlavourSync")
     main()

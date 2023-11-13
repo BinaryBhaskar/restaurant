@@ -258,13 +258,6 @@
             "category": "veg",
             "code": "SLD",
             "special": true
-        },
-        {
-            "name": "Water",
-            "price": 30.0,
-            "category": "drinks",
-            "code": "AQUA",
-            "special": false
         }
     ]
 }
