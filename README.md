@@ -16,8 +16,13 @@ Welcome to the **FlavourSync**, a restaurant management python program that allo
    - Keep the menu up-to-date with ease.
    - Add/Remove new items easily.
 
-### Order Tracking
+### 3.Order Tracking
    - Check the details of food orders.
+
+### 4.Easy Accounting
+   - Easily see the number of orders you've fulfilled.
+   - Easily get how much money you've earned.
+   - Estimate your profits.
 
 
  
