@@ -3,6 +3,30 @@ import datetime as dt
 import random
 import string
 import pytz
+import sys
+
+india_timezone = pytz.timezone('Asia/Kolkata')
+
+default = '''{
+"deliveries":
+[
+
+]
+}'''
+
+def gen(n):
+    with open('orders_log.json', 'r') as o1: #Open Orders file
+        orderdata = json.load(o1)
+
+    with open("res_menu.json") as f1: #Open Menu file
+        menu_data = json.load(f1)
+        menu = json.dumps(menu_data, indent=4)
+
+    if n < 0:
+        file_path = 'orders_log.json'
+        with open(file_path, 'w') as file:
+            file.write(default)
+
 
 india_timezone = pytz.timezone('Asia/Kolkata')
 
@@ -58,8 +82,9 @@ def gen(n):
         "price": total_price,
         "order_details": order_details,
         "address": f"{random.randint(1,99)}, {random.choice(places)}, {random.choice(countries)}",
-        "time_of_order": f"{formatted_random_datetime}"
-        }
+        "time_of_order": f"{formatted_random_datetime}"gm
+    }
+
 
         orderdata["deliveries"].append(new_delivery_order)
         with open('orders_log.json', 'w', encoding = 'utf-8') as o2: #Add new order to Orders file

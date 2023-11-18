@@ -200,6 +200,7 @@ def admin_access(): #Checks admin access through passkey
     if super_access:
         return True
     inkey = input("Enter your Passkey: ")
+    clear()
     if inkey == passkey:
         return True
     else:
@@ -214,14 +215,18 @@ def start_order(): #Ordering mechanism
     while True:
         add_item = ginput("Enter the code of the dish you want to buy (Write 'done' to proceed): ", str, menu_list, True)
         if add_item.lower() == 'done':
+            sys.stdout.write('\033[2J')
             break
         buy_item = next((item for item in menudata['menu'] if item['code'].lower() == add_item), None)
         order_list.append(buy_item)
         order_info(order_list)
     order_info(order_list, True)
 
+def clear():
+    sys.stdout.write('\033[2J')
+    sys.stdout.flush()
 
-def ginput(prompt, given_type, in_range, do_lower): #Get accurate input of a given type and in a range of values
+def ginput(prompt, given_type, in_range, do_lower, correction = True): #Get accurate input of a given type and in a range of values
     while True:
         value = input(prompt)
         if type(value) == given_type:
@@ -231,19 +236,23 @@ def ginput(prompt, given_type, in_range, do_lower): #Get accurate input of a giv
             try:
                 value = int(value)
             except ValueError:
+                br()
                 print("Invalid Response, please re-enter value.")
+                br()
                 continue
         if (in_range == []) or (in_range != [] and value in in_range):
             return value
         else:
-            closest_match = difflib.get_close_matches(value, in_range)
-            if closest_match:
-                meant = input(f'"{value}" not found. Did you mean "{closest_match[0]}"? ("y/n"): ').strip().lower()
-                if meant == "y":
-                    value = closest_match[0]
-                    return value
-            else:
-                print("Invalid Response, please re-enter value.")
+            if correction == True:
+                closest_match = difflib.get_close_matches(value, in_range)
+                if closest_match:
+                    meant = input(f'"{value}" not found. Did you mean "{closest_match[0]}"? ("y/n"): ').strip().lower()
+                    if meant == "y":
+                        value = closest_match[0]
+                        return value
+            br()
+            print("Invalid Response, please re-enter value.")
+            br()
             continue
 
 
@@ -311,9 +320,12 @@ def br(): #Prints a line of equal signs
     print("="*70)
 
 
-def home(): #Home screen
+def home(clearv = True): #Home screen
+    if clearv:
+        clear()
     br()
     chosen_menu = ginput("Enter what you want to see: \n'o' : Order Food\n't' : Track Orders\n'm' : Show Menu\n'a' : Accounting\n'exit' : Exit Program\n" ,str,['o','m','t','a','exit'],True)
+    clear()
     if chosen_menu == 'm':
         print_categorized_menu(menudata, False)
         home()
@@ -327,6 +339,7 @@ def home(): #Home screen
         sys.exit()
 
 def accounting():
+    clear()
     br()
     is_admin = admin_access()
     if is_admin:
@@ -345,16 +358,39 @@ def accounting():
 
 
 def tracking(): #Track Existing and Current Order by its ID or show all Orders
+    clear()
     br()
     all_orders = [order['order_id'] for order in orderdata['deliveries']]
-    orders_and_all = all_orders+['all']
-    get_id = ginput("Enter your Order ID here (Enter 'all' to see all):  ", str, orders_and_all, False)
-    if get_id == 'all':
+    orders_and_more = all_orders+['last','recent']
+    get_id = ginput("Enter your Order ID here: (Enter 'last' to see last made order or 'recent' to see last 10 orders):  ", str, orders_and_more, False, correction = False)
+    if get_id == 'last' or get_id == 'recent':
         is_admin = admin_access()
         if is_admin:
-            for item_id in all_orders:
-                br()
-                get_order_info(item_id)
+            if get_id == 'last':
+                while True and len(all_orders) > 0:
+                    for item_id in all_orders[-1:]:
+                        br()
+                        get_order_info(item_id)
+                    br()
+                    cont = ginput("Enter anything to see previous order or 'exit' to exit: ", str, [], True)
+                    if cont == 'exit':
+                        break
+                    else:
+                        all_orders.pop()
+                        continue
+            elif get_id == 'recent':
+                while True and len(all_orders) > 10:
+                    for item_id in all_orders[-10:]:
+                        br()
+                        get_order_info(item_id)
+                    br()
+                    cont = ginput("Enter anything to see previous 10 orders or 'exit' to exit: ", str, [], True)
+                    if cont == 'exit':
+                        break
+                    else:
+                        for _ in range(10):
+                            all_orders.pop()
+                        continue
         else:
             print("You need admin access")
     else:
@@ -376,7 +412,7 @@ def get_order_info(order_id_input): #Find the order in deliveries and show its i
 
 
 def main(): #Main
-    home()
+    home(clearv= False)
 
 
 if __name__ == "__main__":
