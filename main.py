@@ -226,7 +226,7 @@ def clear():
     sys.stdout.write('\033[2J')
     sys.stdout.flush()
 
-def ginput(prompt, given_type, in_range, do_lower): #Get accurate input of a given type and in a range of values
+def ginput(prompt, given_type, in_range, do_lower, correction = True): #Get accurate input of a given type and in a range of values
     while True:
         value = input(prompt)
         if type(value) == given_type:
@@ -243,16 +243,16 @@ def ginput(prompt, given_type, in_range, do_lower): #Get accurate input of a giv
         if (in_range == []) or (in_range != [] and value in in_range):
             return value
         else:
-            closest_match = difflib.get_close_matches(value, in_range)
-            if closest_match:
-                meant = input(f'"{value}" not found. Did you mean "{closest_match[0]}"? ("y/n"): ').strip().lower()
-                if meant == "y":
-                    value = closest_match[0]
-                    return value
-            else:
-                br()
-                print("Invalid Response, please re-enter value.")
-                br()
+            if correction == True:
+                closest_match = difflib.get_close_matches(value, in_range)
+                if closest_match:
+                    meant = input(f'"{value}" not found. Did you mean "{closest_match[0]}"? ("y/n"): ').strip().lower()
+                    if meant == "y":
+                        value = closest_match[0]
+                        return value
+            br()
+            print("Invalid Response, please re-enter value.")
+            br()
             continue
 
 
@@ -362,8 +362,8 @@ def tracking(): #Track Existing and Current Order by its ID or show all Orders
     br()
     all_orders = [order['order_id'] for order in orderdata['deliveries']]
     orders_and_more = all_orders+['last','recent']
-    get_id = ginput("Enter your Order ID here: (Enter 'last' to see last made order or 'recent' to see last 10 orders):  ", str, orders_and_more, False)
-    if get_id == 'last' or 'recent':
+    get_id = ginput("Enter your Order ID here: (Enter 'last' to see last made order or 'recent' to see last 10 orders):  ", str, orders_and_more, False, correction = False)
+    if get_id == 'last' or get_id == 'recent':
         is_admin = admin_access()
         if is_admin:
             if get_id == 'last':

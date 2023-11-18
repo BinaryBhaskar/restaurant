@@ -8,90 +8,24 @@ import sys
 india_timezone = pytz.timezone('Asia/Kolkata')
 
 default = '''{
-"deliveries": [
-{
-"name": "Bhaskar",
-"order_id": "TU91_15-09",
-"price": 154.0,
-"order_details": [
-{
-"name": "Water",
-"price": 30.0,
-"category": "drinks",
-"code": "AQUA",
-"special": false
-},
-{
-"name": "Samosa",
-"price": 49.0,
-"category": "veg",
-"special": false,
-"code": "SMS"
-},
-{
-"name": "Coke",
-"price": 75.0,
-"category": "drinks",
-"code": "COKE",
-"special": false
-}
-],
-"address": "23, Mukta, Chattisgarh, 495692",
-"time_of_order": "15/09/2023, Friday, 21:15"
-},
-{
-"name": "Nitesh",
-"order_id": "RH49_15-10",
-"price": 298.0,
-"order_details": [
-{
-"name": "Pepsi",
-"price": 75.0,
-"category": "drinks",
-"special": false,
-"code": "PPSI"
-},
-{
-"name": "Rasgulla",
-"price": 49.0,
-"category": "sweets",
-"special": false,
-"code": "RS"
-},
-{
-"name": "Coke",
-"price": 75.0,
-"category": "drinks",
-"code": "COKE",
-"special": false
-},
-{
-"name": "Special Masala Chai",
-"price": 99.0,
-"category": "drinks",
-"special": true,
-"code": "CHAI"
-}
-],
-"address": "12, Mukta, India",
-"time_of_order": "15/10/2023, Sunday, 14:51"
-}
+"deliveries":
+[
+
 ]
 }'''
 
 def gen(n):
-    with open('orders_log.json', 'r', encoding = 'utf-8') as o1: #Open Orders file
+    with open('orders_log.json', 'r') as o1: #Open Orders file
         orderdata = json.load(o1)
 
-    with open("res_menu.json", encoding = 'utf-8') as f1: #Open Menu file
+    with open("res_menu.json") as f1: #Open Menu file
         menu_data = json.load(f1)
         menu = json.dumps(menu_data, indent=4)
 
     if n < 0:
-        with open('orders_log.json', 'w', encoding='utf-8') as f1:
-            menu_data = json.load(o1)
-            menu = json.dumps(default, indent = 4)
-        return
+        file_path = 'orders_log.json'
+        with open(file_path, 'w') as file:
+            file.write(default)
 
     codeslist = [item['code'] for item in menu_data["menu"]]
 
@@ -144,5 +78,5 @@ def gen(n):
         with open('orders_log.json', 'w', encoding = 'utf-8') as o2: #Add new order to Orders file
             json.dump(orderdata, o2, indent=2)
 
-x = int(sys.argv[1])
+x = int(input("Enter x:"))
 gen(x)
