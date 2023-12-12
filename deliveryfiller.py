@@ -82,7 +82,7 @@ def gen(n):
         "price": total_price,
         "order_details": order_details,
         "address": f"{random.randint(1,99)}, {random.choice(places)}, {random.choice(countries)}",
-        "time_of_order": f"{formatted_random_datetime}"gm
+        "time_of_order": f"{formatted_random_datetime}"
     }
 
 
